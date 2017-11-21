@@ -63,7 +63,7 @@ final class ScreenManager: NSObject {
             }
         }
     }
-    private var currentLayout: Layout? {
+    var currentLayout: Layout? {
         guard !layouts.isEmpty else {
             return nil
         }
@@ -123,7 +123,7 @@ final class ScreenManager: NSObject {
             return
         }
 
-        let windows = delegate?.activeWindowsForScreenManager(self) ?? []
+        let windows = (delegate?.activeWindowsForScreenManager(self) ?? [])
         changingSpace = false
         reflowOperation = currentLayout?.reflow(windows, on: screen)
         OperationQueue.main.addOperation(reflowOperation!)

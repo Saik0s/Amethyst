@@ -35,6 +35,8 @@ enum ConfigurationKey: String {
     case floatSmallWindows = "float-small-windows"
     case mouseFollowsFocus = "mouse-follows-focus"
     case focusFollowsMouse = "focus-follows-mouse"
+    case mouseSwapsWindows = "mouse-swaps-windows"
+    case mouseResizesWindows = "mouse-resizes-windows"
     case layoutHUD = "enables-layout-hud"
     case layoutHUDOnSpaceChange = "enables-layout-hud-on-space-change"
     case useCanaryBuild = "use-canary-build"
@@ -50,6 +52,8 @@ enum ConfigurationKey: String {
             .floatSmallWindows,
             .mouseFollowsFocus,
             .focusFollowsMouse,
+            .mouseSwapsWindows,
+            .mouseResizesWindows,
             .layoutHUD,
             .layoutHUDOnSpaceChange,
             .useCanaryBuild,
@@ -323,6 +327,14 @@ final class UserConfiguration: NSObject {
 
     func toggleFocusFollowsMouse() {
         storage.set(!focusFollowsMouse(), forKey: ConfigurationKey.focusFollowsMouse.rawValue)
+    }
+
+    func mouseSwapsWindows() -> Bool {
+        return storage.bool(forKey: ConfigurationKey.mouseSwapsWindows.rawValue)
+    }
+
+    func mouseResizesWindows() -> Bool {
+        return storage.bool(forKey: ConfigurationKey.mouseResizesWindows.rawValue)
     }
 
     func enablesLayoutHUD() -> Bool {
